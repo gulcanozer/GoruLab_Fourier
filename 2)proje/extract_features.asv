@@ -1,0 +1,32 @@
+%% documentation 
+%
+%
+function data = extract_features(bw,dbg)
+    bw = bw(1:40,:);
+    
+    dis_kontur = edge(bw,'sobel');
+    
+    f = fft2(bw);
+    F = fftshift(f); % Center FFT
+
+F = abs(F); 
+F = log(F+1); 
+F = mat2gray(F);
+    
+    df = f.*bw;
+    
+    data = imagesc(20*log10(abs(fftshift(f))));
+    
+    %if dbg
+        %figure(1);
+            subplot(221), imshow(dis_kontur)
+            subplot(222), imshow(f)
+            subplot(223), imshow(df)
+            subplot(224), imagesc(20*log10(abs(fftshift(f))))
+            pause
+   % end
+end
+
+%% helpers funcs
+%
+%
