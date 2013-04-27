@@ -1,0 +1,19 @@
+Görü lab dersi proje ödevleri için genel bir çalışma 
+Öğrencilerden beklenen burada bulunan feature_extract.m fonksiyonunu verilen makalede anlatılan yönteme uygun bir biçimde gerçeklemeleridir
+
+bunun için 
+   1) bu reponun içi bir klasöre çıkartılır
+   
+   2) aşşağıdaki adresten SDHA 2010 veri tabanı be boundingbox.mat dosyası indirilir
+http://cvrc.ece.utexas.edu/SDHA2010/Aerial_View_Activity.html
+	
+	3) bu dosyalar reponun içinde _db adında bir klasöre çıkartılır
+	
+	4) runme_1.m dosyası çalıştırılır
+	
+	5) runme_2.m dosyası çalıştırılır
+	
+	6) forumdan daha sonra verilecek olan groundtruth.mat dosyası _db nin içine eklenir
+	
+	7) extract_features.m dosysını iç uygun biçimde implemente edilir
+	
