@@ -1,0 +1,94 @@
+Deforme Nesneler Fourier Tanımlayıcıları ile Otomatik Yürüme Tanıma
+Özet
+Biz  Fourier tanımlayıcıları kullanımı etrafında tabanlı Otomatik Yürüme Tanıma için insan yürüyüşünün periyodik deformasyon modelli yeni bir yöntem açıklayacağız. Fourier tanımlayıcıları, statik veya hareketli, sert gövdeli nesnelerin sınırlarını modellemek için geçmişte başarıyla kullanılmaktadır fakat birçok nesneler aslında hareket ettikçe bir şekilde deforme olmaktadır. Biz burada sadece nesnenin sınırlarını modellemek için Fourier tanımlayıcıları kullanırız  fakat aynı zamanda yerleşim-zaman deformasyonların altında nesnenin sınırları tabi tutulur. Southampton Üniversitesi derlenmiş Büyük Yürüme Veritabanı üzerinde bu yeni yöntemi uyguladı ve her kişi için elde edilen Fourier tanımlayıcıları tek olarak görünür ve tanımlanabilmesi için kullanılabilir bulundu. % 85 üzerinde başarılı tanıma oranları tanımlayıcıları sadece küçük bir kümesini kullanarak Büyük Yürüyüş Veritabanı elde edilmiştir.
+
+Giriş
+     Benzersiz bir kişiyi tanımlamak için biyometrik kullanımı bir yılda hızla büyüdü. Parmak izi kullanımı kaynaktan analizi yoluyla insanların belirlenmesine iris desen gibi biyometrik tabanlı teknikler çeşitli uygulama alanlarında hızlı yaygın bir yer haline gelmektedir. Biyometrik, sahtecilik riski olmadan güvenilir bireysel doğrulamanın gerekli olduğu en önemli güvenlik ve gözetim alanlarında kullanılmıştır. Alışılmış yöntemler; kişisel kimliğin doğruluğunu belirlemek için uzun işlemler gerektirir (örneğin DNA testi gibi..) ya da hızlı ama güvenilir olmayan işlemlerdir (Pin kodu sistemi gibi..) Bununla birlikte biyometri tabanlı yöntemler, hızlı ve (potansiyel olarak) son kullanıcıya ait çok güvenli bir sistem sağlar.
+     Son zamanlarda biyometrik olarak insan yürüme kalıplarının kullanımına dikkat edilmiş ve genel olarak insan hareket analizi tahsis edilmiştir. Ancak bu hareketi incelemek zor bir iştir. İnsan yürüyüşü çalışmaları; psikoloji, biyomekanik, ve çeşitli tıbbi alanlarda gibi  bir çok alanda yürütülerek elde edilmiştir. Ancak bu çalışmalar genellikle veri ya da göstergesinin kullanımı manuel etiketleme gibi insan etkileşimi gerektirmiştir. Bu nedenle insan Yürümenin bilgisayar görme tabanlı analiz amacı, otomatik ve doğru minimum insan müdahalesi ile insan yürüyüşü kurtarmak ve açıklamaktır. Birkaç model, insan vücudunun tanımı için önerilmiştir ve ayrıca insan yürüyüşü açıklaması için [1,3]. Bu modeller yalnızca bigisayarlı görüntü ile uygulanabilir bununla birlikte eğer söz konusu insan ve çevresi arasında doğru bir ayrım yapılması ise bu başlı başına bir önemsiz bir problem değildir. İnsan yürüyüşünün diğer biyometrik konular üzerinde birçok avantajı vardır, ancak belki de en önemli avantajı bir kişinin izni ve işbirliği olmadan kimliğini doğrulamak için bir araç sunar.
+      Insan yürüyüşü çoğu tanımlayıcıları, çeşitli vücut parçaları geometrik tanımları dayanarak onların hareketlerini açıklayan matematiksel modellemeler doğada kinematik vardır. 
+  Vücudun çeşitli zaman içinde parça, kendi hız ve bunların hızlanma açıları gibi birçok kinematik özellikler mevcuttur. Diğer çalışmalar eşsiz bir yürüyüş tanımlayıcı üretmek için daha istatistiksel bir yaklaşım almıştır.  Bunlar Cananonical Analizi ile kombine Analizi (boyutluluk sıkıştırma için) (sınıflandırma) [5], hız anların kullanımı [10], ve daha yakın Hidden Markov Modellerinin kullanımı [6] gibi temel bileşenlerdir. İnsan yürüyüşü bilateral simetri doğasında analiz ederek insan hareketini tanımlayan [4] güncel araştırmalar yürütülmektedir.Henüz bilgisayarlı görüntüde kullanılan insan yürüyüşü arasında yalnızca belirli modellerden iki biçimden biri alınmıştır. Bir yaklaşım, basit harmonik hareket [2] kullanarak insan uyluk sarkaç hareketini modellemek için olmuştur diğer yaklaşım modelleri birleştiğinde osilatörler gibi uyluk ve alt bacak hareketi [11] modellenir. Bu modeller, ancak, insan vücudunun sadece belli kısımlarını temsil eder ve resim verilerine modelinin bir sığdır bulma ile bunu yaparlar. Burada tarif yöntemi yerine sadece belirli bir vücut parçası daha vücudun tam hareket ve deformasyon, modelleme için yeni bir yaklaşım göstermektedir.
+
+  Uzay-zamansal Fourier tanımlayıcıları
+     Fourier tanımlayıcıları iki-boyutlu şeklin sınırlarını [7, 8, 12] gösteren için bir yöntem olarak oluşturulmuştur. Fourier tanımlayıcılarının önemli avantajları  Fourier alan içinde bir şeklini temsil ederken kolayca kendi frekanslarına erişebilir. Mikroskobik özellikleri (ayrıntılar) yüksek frekanslarda bulunur ise makroskobik özellikleri (şeklin genel özellikleri), düşük frekanslarda bulunur gibi tespitler yararlı olabilir.
+     Şeklin sınırı kapalı bir eğri oluşturur, daha sonra bu eğri olarak kabul edilebilir öyle ki periyodik olarak:
+c(l + L) = c(l)        (1)
+buradaki  L, eğrinin toplam uzunluğunu gösterir. Bu periyodiklik için şeklin Fourier tanımlayıcıları olmak, dizi, AXK, bxk, ayk, ve byk katsayıları ile Fourier serileri kullanarak şekillerin sınır temsil etmek mümkündür:
+
+ 
+
+
+Insan yürüyüşü göz önüne alındığında periyodik bir deformasyon sergiler, biz 
+periyodik deforme şekillerinin bir dizi olarak  yürüyüş döngüsünü (bir dönem) yakalayabilir, s,
+ki böyle;
+ 
+Burada geçen T, tam bir yürüyüş döngüsünde zamanın periyodunu belirtir. Bu nedenle  bu görüntü dizisi içindeki şekil sınırının deformasyonu iki boyutlu ayrık Fourier serisi ile temsil edilebilir.
+
+ 
+
+karmaşık formun kısa hali burada verilmiştir. Bu serinin Fourier katsayıları yürüyüş döngüsünün bütününü karakterize eder. Bu katsayılar Fourier dönüşümünün  ayrılabilirlik özelliğini kullanarak , iki ayrı tek boyutlu kompleks Fourier dönüşümleri olarak  hesaplanabilir. 
+
+ 
+
+
+3) YÜRÜMEDE ÖZNİTELİĞİN TÜRETİLMESİ
+    Bir yürüyüş dizisinden öznitelik türetmek için sırayla her bir görüntü öncelikle ön işleme tabi tutulur. Fourier analizinin bu noktada uygulanabilir olması için bağımlı değişkenlere göre düzenli örneklenmiş veri ihtiyaçları gerekmektedir. Bu çalışmada kullanılan yürüme verileri açısından hem uzay hem de zamanda düzenli örnekleme gerekmektedir. Ayrıca, eşit sayıdaki örnek noktalar, belirtilen bir yürüyüş dizisi içindeki her bir görüntüdeki denklem hesabına yardım için mekânsal olarak elde edilmelidir. Her bir yürüyüşün özniteliğini çıkarmak için kullanılan sürece genel bakış:
+Öncelikle arka plan çıkarılır (renk anahtarı ile).Her görüntü, bir siluet üretmek için eşiklenir  (sekil a ve b ye bakın).Dış kontur, her bir görüntüde kompleks sınır sinyali üretmek için sınırlardan herbir nesne izlenerek çıkarılır. Bunun ötesinde, doğrusal enterpolasyon, herbir kare için düzenli örneklenmiş veri noktaları eşit sayıda(256) ayıklanarak yapılır.
+Gerçek bir yürüyüş özniteliğini  üretmek için karmaşık sınır sinyallerinin uzay-zamansal fourier tanımlayıcıları denklemin eşdeğerini, bir trigonometrik denklem kullanarak hesaplar(5)  ve elde edılen buyuluk spectrumu yuruyus imzası olarak kullanılır.(sekıl1(c ye bakın))
+Gercek bır yuruyus ımza uzay-zamansal fourıer tanımlayıcıları uretmek ıcın komplexs sınır sınyallerı trıgometrık,es degerı hesaplanır denklem (5) te ve elde edılen buyuluk spectrumu versiyonu yuruyus imzası olarak kullanılmıştır.(sekıl1(c ye bakın))
+4)ÖZELLİK SEÇİMİ
+Yukarıda tarif edilen yöntem kullanılarak üretilen öznitelik, tanımlayıcıların büyük bir kısmını içermektedir, buna rağmen nesnenin yürüyüşü hakkındaki bilginin çoğu alt sınır tanımlayıcılarda bulunur.
+
+ 
+
+
+Sınıflandırma açısından bu yürüyüş imzalarını kullanmak için tanımlanmış her bir nesnedeki tanımlayıcı sayısını azaltmak gerekir.
+
+Bu, iki nedenden dolayı gereklidir. Birincisi, sınıflandırma için sadece yararlı olacak tanımlayıcıları çıkarmak, ikinci olarak ise özellik alanının boyutunu azaltmak - uygun sınıflandırma hızını sağlamaktır.
+
+a ve b ıkı sınıf arasındaki ayırım belırlı bır ozellık tarafından verılır.
+
+Yukarıda belirtildiği gibi, bu durumda özellik seçiminin temel amacı, Correct Classification Rate (CCR) için nesneler içi varyansı azaltmak ve nesneler arası varyansı artırmaktır. Bunu sağlamak için sınıf kovaryanslarına  göre sınıflar arası ayrımı  ölçmek için metrik  Bhattacharyya mesafesinin  bir varyasyonu  kullanılır.Verilen özellik için a ve b sınıfları arasındaki ayrım şu şekilde verilir: 
+ 
+m a nın olduğu yer efsulon a sınıfının matrıx conversıyonudur.S degerının anlamı başarılı bır sekılde ayıracak yetenek ozellıgının olcusunu kazanmak ıcın mevcut tanımların numarası olan
+
+ma  sınıf ortalamasını  ve ∑▒a a sınıfının kovaryans matrisini verir. Bir özellik yeteneğinin ölçüsünü elde etmek için başarıyla ayrı sınıflanmış S nin orta değeri her bir özellik için hesaplanır.
+
+
+D kullanılabilir tanımlayıcıları sayısıdır ve  S ise verilen özelliklerin sınıfsal ayrılabilirlik yeteneği ile orantılıdır.
+ 
+5)  YURUME TANIMA
+ 
+Bu yenı teknıgın tanım yeteneklerını test ıcın spatio-temporal Fourier tanımlayıcıları Southampton
+unıversıtesınde Large Gait Database her nesne ıcın hesapladılar.[9]. Bu database 115 nesne 1062
+dızıden oluşuyor.Sınıflandırma, K-en yakın komşu sınıflandırıcı ve leave-one-out kuralı ile çapraz doğrulama kullanılarak yapılır.Bu sınıflandırıcı, kth yakın komsu konuların tipik sınıfı ile bazı sınıflardan test nesnesi  atar. Sınıflar arasındaki mesafe Öklid mesafe ile ölçülür
+ 
+N özellik kümesinin boyutunu gösterir. xn ve yn sırasıyla örnek x ve y in nth özelliğinin değerleridir.
+
+6.) Performans Analizi
+Bu yeni tekniğin performans ve sağlamlılığı; veri eksikliği, çözünürlük değişimi ve mesafe etkilerini simüle etmek açısından incelendi.
+6.1.)Frame Eksikliğinin Etkisi
+Eksik çerçeveler veya hasarlı veriler (algılanabilir ise) görüntü dizilerinden ardışıl frameleri atlayarak simüle edilir. Bu, bir Fourier-dayalı bir teknik olduğu için, sadece kare atlama frekans etki alanında ciddi girişime neden olur ve bu nedenle tanımlayıcıları sınıflandırma için kullanılmıştır. (Sonuç, bir basınç dalgası evrişimi(convulation) ve bitişik kayıp çerçevelerin söz konusu olduğu orijinal tanımşayıcılar olacaktır). Bu Fourier interpolasyonun üstesinden gelmek için sınıflandırma öncesinde eksik veya bozuk veri tahmin edilir. Bu zamansal veriler alt-örnekleme yoluyla gerçekleştirilir, böylece veriler hala zaman içinde eşit aralıklıdır, ancak eksik veri içermezler. Uzunluğu, orijinal görüntü dizisi ile aynı olana kadar bu alt-örnekleme dizi spektrumu sonra sıfır ile olur.  İnterpolasyon , zaman alanı içine bu sıfırla şişirmeyi geri dönüştürerek ters tarafından yapılır. Sonuçta elde edilen kayıp frameleri orijinal dizisinden sonra bu interpolasyon frameleri ile doldurulur.
+     Bu tekniği test etmek için birkaç frame ihmal edilir, daha sonra Southampton Large Gait Database’deki her bir dizi için Fourier interpolasyon yoluyla tahmin edilir. Bu teknik kullanılarak yapılan sınıflandırmanın sonuçları Şekil 2 gösterilmektedir. Görülebileceği gibi, zamansal verinin oldukça büyük bir kısmı, sınıflandırma performansından(başarısından ) büyük bir kayıp olmadan ihmal edilebilir.
+ 
+                     Şekil 2.Kayıp zamansal veri interpolasyonun etkileri
+
+
+
+6.2.) Mesafe Etkisi
+Mesafe etkisi bir görüntü dizisindeki her bir görüntünün uzaysal çözünürlüğünü azaltarak simüle edilir. 690 x 400 çözünürlüğündeki orijinal görüntüler, yükseklikleri 128, 64, ve 32 olacak şekilde ölçeklendi.(bak Şekil 3). Tablo 2'de gösterildiği gibi, bu çözünürlüklerdeki sınıflandırma sonuçları, görüntü çözünürlüğünün sınıflandırma başarımında büyük bir kayıp olmaksızın nispeten küçük olabileceğini gösterdi. 
+Uzaysal çözünürlüğünün kaybının sonucu tanımlama oranının içindeki sadece küçük damlada olması, muhtemelen şöyle hesaplanabilir: verilen Fourier tanımlayıcıdaki bilginin çokluğu, düşük-seviye tanımlayıcılarının içinde olması ve N uzunlugunun sınırından N/2 tanımlayıcıyı çıkarabildiğimizden kaynaklanır.
+Bu nedenle, biz N ‘in yeterince büyük bir değerine sahip olduğumuz sürece tanıma için yeterli sayıda tanımlayıcı elde edilebilir.
+.
+
+
+ 
+        Şekil 3. Değişen resim çözünürlükleri : (a) 400; (b) 128; (c) 64; (d) 32
+
+
+Tablo 2: Değişen çözünürlükler için k-en yakın komşu sınıflandırma (k = 3) sonuçları
+ 
+
+
+7.) Sonuçlar
+Bu yazının amacı, insan yürümesinin uzay-zamansal hareketinin elde edilmesi ve sınıflandırılmasında Fourier tanımlayıcılarının kullanımını araştırmaktır. Bu nedenle, insan yürüyüşü ile ilişkili tam, kompakt(yoğun) ve uzay-zamansal hareketi ele geçiren bir görüntü dizisinden bir Fourier tanımlayıcıyı ayıklamak için yeni bir teknik sunduk.
+İnsan yürüyüşünün temel hareketi, Fourier tanımlayıcılarının nispeten düşük bir kısmında yakalanır ve böyle bir mesafeden nesnelerin tanımlanması için gerekli olan çok düşük çözünürlüklü görüntü dizilerinden, doğru Fourier tanımlayıcılarının çıkarılması için izin verilir. Bir ikincil teknik, kayıp zamansal verilerinin yeniden yapılanmasında hangi yardımcıların olacağını ortaya koyar ve eksik verilerin makul bir miktarını içeren dizilerden hesaplanabilir olanlarına doğru Fourier tanımlayıcılar için olanak sağlar. % 85 üzerindeki tanıma oranı, bu yeni tekniğin otomatik yürüyüş tanımada ümit vaat ettiğini gösteren Southampton Large gait database’den elde edildi.
