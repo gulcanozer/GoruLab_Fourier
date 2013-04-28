@@ -2,12 +2,12 @@
 %
 %
 function data = extract_features(bw,dbg)
-    bw = bw(1:40,:);
+    bw = bw(1:40,:); %% Belirtilen boyut kadar görüntüyü alır keser
     
-    dis_kontur = edge(bw,'sobel'); 
+    dis_kontur = edge(bw,'sobel'); %% Görüntünün kenarlarını bulur
     
-    f = fft2(bw);
-    F = fftshift(f); 
+    f = fft2(bw); %% Görüntüye fourier uygular
+    F = fftshift(f); %% 
     
     df = F.*bw; 
     
