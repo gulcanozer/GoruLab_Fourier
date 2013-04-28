@@ -1,4 +1,4 @@
-## Deforme Nesneler Fourier Tanımlayıcıları ile Otomatik Yürüme Tanıma
+# Deforme Nesneler Fourier Tanımlayıcıları ile Otomatik Yürüme Tanıma
 ## Özet
 <p> Biz  Fourier tanımlayıcıları kullanımı etrafında tabanlı Otomatik Yürüme Tanıma için insan yürüyüşünün periyodik deformasyon modelli yeni bir yöntem açıklayacağız. Fourier tanımlayıcıları, statik veya hareketli, sert gövdeli nesnelerin sınırlarını modellemek için geçmişte başarıyla kullanılmaktadır fakat birçok nesneler aslında hareket ettikçe bir şekilde deforme olmaktadır. Biz burada sadece nesnenin sınırlarını modellemek için Fourier tanımlayıcıları kullanırız  fakat aynı zamanda yerleşim-zaman deformasyonların altında nesnenin sınırları tabi tutulur. Southampton Üniversitesi derlenmiş Büyük Yürüme Veritabanı üzerinde bu yeni yöntemi uyguladı ve her kişi için elde edilen Fourier tanımlayıcıları tek olarak görünür ve tanımlanabilmesi için kullanılabilir bulundu. % 85 üzerinde başarılı tanıma oranları tanımlayıcıları sadece küçük bir kümesini kullanarak Büyük Yürüyüş Veritabanı elde edilmiştir.
 
