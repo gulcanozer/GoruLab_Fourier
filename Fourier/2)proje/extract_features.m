@@ -4,7 +4,7 @@
 function data = extract_features(bw,dbg)
     bw = bw(1:40,:);
     
-    dis_kontur = edge(bw,'sobel');
+    dis_kontur = edge(bw,'sobel'); %%dış konturun çıkartılması
     
     f = fft2(bw);
     F = fftshift(f); 
