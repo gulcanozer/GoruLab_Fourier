@@ -9,5 +9,7 @@
 * Görüntülerin 2 boyutlu hızlı fourier dönüşümleri alınır.
 * Fourier dönüşümleri alınan görüntülerin DC bileşenleri görüntünün merkezine taşınır ve görüntünün kendisiyle örnekleme oluşturmak için nokta çarpımı yapılır.
 * En son olarak oluşturduğumuz fonksiyonla görüntülerimiz ölçeklenerek nesnelerimiz görüntülenir.
+
 <p> Bu algoritmaya göre oluşturduğumuz kodu örnek bir görüntü için çalıştırdığımızda elde ettiğimiz çıktı şu şekildedir :
+
 ![](http://k1304.hizliresim.com/18/w/mkbhg.png)
