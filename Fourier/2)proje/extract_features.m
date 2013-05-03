@@ -2,7 +2,8 @@
 %
 %
 function data = extract_features(bw,dbg)
-    bw = bw(1:40,:); %% Belirtilen boyut kadar görüntüyü alır keser
+    bw = bw(1:40,:); %% Belirtilen boyut kadar görüntüyü alır keser.Bu boyut ise yaklasık olarak
+                     %% gölgeden kurtulmak icin belirlenmistir.
     
     dis_kontur = edge(bw,'sobel'); %% Görüntünün kenarlarını bulur
     
