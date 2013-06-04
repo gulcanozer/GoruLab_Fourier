@@ -13,19 +13,20 @@ d=(giris-min(giris))/(max(giris)-min(giris));   % normalizasyon aşaması - değer 
 
 cikis=[]; 
 for i=1:length(d)
-    if d(i)==1       
-        cikis(i,:)= [0 0];   % digging (databasehazırla klasöründeki README.md deki ilk 3 hareketler)
-    elseif d(i)==0      
-        cikis(i,:)= [0 1];   % standing  
+    if giris(i)>9       
+        cikis(i,:)= [0 0];   %  3: digging  (databasehazırla klasöründeki README.md deki ilk 3 hareketler)
+    elseif giris(i)< 7      
+        cikis(i,:)= [0 1];   %  1: pointing
     else
-        cikis(i,:)=[1 0];   % pointing 
+        cikis(i,:)=[1 0];    %  2: standing
     end
 end
- 
-cikis=(cikis');    % network her bır satırın ılk ozelliğimi alcağı için ilk sutundaki veriler bir resme ait olmalı bu nedenle transpozası alındı.
+
+cikis=(cikis');
  
 %YSA’nin tasarimi, egitimi ve simulasyonu
 net = newff(minmax(d),[3 4 2],{'tansig','logsig','purelin'},'trainlm', 'learngdm');
+
 net = train(net,d,cikis);
 
 an = sim(net,d);  %simulasyon aşaması
@@ -37,7 +38,7 @@ legend('Gerçek deger','YSA cikisi'),xlabel('grs'),ylabel('cks'),title('Egitim ve
 
 
 %test etme
-DIR_t = './test/';  
+DIR_t = './test/';  % yukardakiyle benzer buraya benzer yorumlar yapın. 
 
 feature_t = '*.mat';
 giris_t=[];
@@ -53,15 +54,17 @@ d_t=(giris_t-min(giris_t))/(max(giris_t)-min(giris_t));
 
 cikis_t=[]; 
 for i=1:length(giris_t)
-    if d_t(i)==1       
+    if giris_t(i) > 9       
         cikis_t(i,:)= [0 0];
-    elseif d_t(i)==0      
+    elseif giris_t(i)< 7      
         cikis_t(i,:)= [0 1];
     else
         cikis_t(i,:)=[1 0];
     end
 end
 
+giris_t=(giris_t');
+cikis_t=(cikis_t');% transpoza nedeni yukardakıyle aynı
 
 atn = sim(net,d_t);  %simulasyon aşaması
 
