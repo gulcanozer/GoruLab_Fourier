@@ -1,8 +1,8 @@
   
-  ### YSA ile Hareket Analizi:
+  YSA ile Hareket Analizi:
   
   
-  ## Youtube Videosu:
+  Youtube Videosu:
 
   http://www.youtube.com/watch?v=Ab2hI8T2fpA
 
